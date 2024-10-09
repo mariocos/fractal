@@ -8,6 +8,6 @@ void	free_error(void)
 
 void	ft_call_error(void)
 {
-	write (1, "please call as follows,\n./fractol mandelbrot iter_nmb\n./fractol julia nmb nmb iter_nmb\n", 90);
+	write (1, "please call as follows,\n./fractol mandelbrot iter_nmb\n./fractol julia nmb nmb iter_nmb\n", 88);
 	exit (1);
 }

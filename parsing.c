@@ -37,10 +37,8 @@ void	fart_check(char *s)
 		i++;
 	while (s[i] != '\0')
 	{
-		printf("checking %c\n", s[i]);
 		if ((s[i] < '0' || s[i] > '9') && s[i] != '.')
 		{
-			printf("hey\n");
 			write(1, "please call julia with a valid number set\n", 43);
 			exit(1);
 		}
@@ -60,28 +58,35 @@ double	ft_fartoi(char *str)
 	double	nmb;
 	int	i;
 	double	flag;
+	int	neg;
 
 	fart_check(str);
 	i = 0;
 	flag = 10;
 	nmb = 0;
+	neg = 1;
+	if (str[i] == '-')
+	{
+		neg = -1;
+		i++;
+	}
 	while (str[i] != '\0')
 	{
 		if (str[i] == '.')
 			flag = 0.1;
-		if (flag == 10)
+		else if (flag == 10)
 		{
 			nmb *= 10;
 			nmb += str[i] - '0';
 		}
-		if (flag != 10)
+		else if (flag != 10)
 		{
 			nmb += (str[i] - '0') * flag;
 			flag *= 0.1;
 		}
 		i++;
 	}
-	return (nmb);
+	return (nmb * neg);
 }
 
 

@@ -10,6 +10,8 @@ SRCS =	main.c \
 		libft_utils.c \
 		error_handling.c \
 		parsing.c \
+		event_handler.c \
+		
 		
 
 OBJS = ${SRCS:.c=.o}

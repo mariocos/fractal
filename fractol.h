@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "minilibx-linux/mlx.h"
+#include "X11/X.h"
+#include "X11/keysym.h"
 
 //changeables
 #define WIDTH 800
@@ -54,6 +56,9 @@ typedef struct	s_fractol//missing hooks
 	int		iteration_limit;
 	double	julia_x;
 	double	julia_y;
+	double	shift_sides;
+	double	shift_vert;
+	double	zoom;
 }				t_fractol;
 
 
@@ -65,6 +70,7 @@ void	ft_putstr_fd(char *s, int fd);
 //init file
 void	fractol_init(t_fractol *fractol);
 void	data_init(t_fractol *f, int iter);
+void	events_init(t_fractol *f);
 //error handling
 void	free_error(void);
 void	ft_call_error(void);
@@ -83,7 +89,12 @@ void	parser(int argc, char **argv);
 double	ft_fartoi(char *str);
 void	fart_check(char *s);
 int	ft_atoi(char *str);
-
+//key_handling
+int	key_handler(int	keysym, t_fractol *f);
+int	close_handler(t_fractol *f);
+int	mouse_handler(int keysym, int x, int y, t_fractol *f);
+//help
+void	ft_help(void);
 
 
 

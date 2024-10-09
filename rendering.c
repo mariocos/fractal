@@ -35,8 +35,8 @@ void	handle_pixel(int x, int y, t_fractol *s)
 	int			color;
 
 	i = 0;
-	z.x = ft_scale(+2, -2, WIDTH, 0, x);
-	z.y = ft_scale(-2, +2, HEIGHT, 0, y);
+	z.x = ((ft_scale(+2, -2, WIDTH, 0, x) * s->zoom) + s->shift_sides);
+	z.y = ((ft_scale(-2, +2, HEIGHT, 0, y) * s->zoom) + s->shift_vert);
 	ft_mandel_julia(&z, &c, s);
 	while (i < s->iteration_limit)
 	{
