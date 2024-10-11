@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 12:23:24 by mariocos          #+#    #+#             */
+/*   Updated: 2024/10/11 12:55:59 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-t_complex ft_complex_sum(t_complex z, t_complex c)
+t_complex	ft_complex_sum(t_complex z, t_complex c)
 {
 	t_complex	sum;
 
@@ -9,7 +21,6 @@ t_complex ft_complex_sum(t_complex z, t_complex c)
 	return (sum);
 }
 
-// x'2 +ai'2 +2xai
 t_complex	ft_complex_sqrd(t_complex z)
 {
 	t_complex	ret;

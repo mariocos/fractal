@@ -1,14 +1,33 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rendering.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 12:23:31 by mariocos          #+#    #+#             */
+/*   Updated: 2024/10/11 13:05:27 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-double	ft_scale(double new_max, double new_min, double max, double min, double value)
+#include "fractol.h"
+//this is really dumb but since i cant use more than 4 params it had to be done
+double	ft_scale(int flag, double max, double min, double value)
 {
-    return ((new_max - new_min) * (value - min) / (max - min) + new_min);
+	if (flag == 1)
+		return ((+2 - -2) * (value - min) / (max - min) + -2);
+	if (flag == 2)
+		return ((-2 - +2) * (value - min) / (max - min) + +2);
+	if (flag == 3)
+		return ((MAGENTA_BURST - PSYCHEDELIC_PURPLE)
+			* (value - min) / (max - min) + PSYCHEDELIC_PURPLE);
+	return (-1);
 }
 
 void	ft_pixel_put(int x, int y, t_img *img, int color)
 {
 	int	offset;
-	
+
 	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(unsigned int *)(img->pixels + offset) = color;
 }
@@ -35,21 +54,21 @@ void	handle_pixel(int x, int y, t_fractol *s)
 	int			color;
 
 	i = 0;
-	z.x = ((ft_scale(+2, -2, WIDTH, 0, x) * s->zoom) + s->shift_sides);
-	z.y = ((ft_scale(-2, +2, HEIGHT, 0, y) * s->zoom) + s->shift_vert);
+	z.x = ((ft_scale(1, WIDTH, 0, x) * s->zoom) + s->shift_sides);
+	z.y = ((ft_scale(2, HEIGHT, 0, y) * s->zoom) + s->shift_vert);
 	ft_mandel_julia(&z, &c, s);
 	while (i < s->iteration_limit)
 	{
 		z = ft_complex_sum(ft_complex_sqrd(z), c);
 		if ((z.x * z.x) + (z.y * z.y) > s->escaped_value)
 		{
-			color = ft_scale(WHITE, BLACK, s->iteration_limit, 0, i);
+			color = ft_scale(3, s->iteration_limit, 0, i);
 			ft_pixel_put(x, y, &s->img, color);
 			return ;
 		}
 		++i;
 	}
-	ft_pixel_put(x, y, &s->img, WHITE);
+	ft_pixel_put(x, y, &s->img, BLACK);
 }
 
 void	fractol_render(t_fractol *f)
@@ -64,5 +83,6 @@ void	fractol_render(t_fractol *f)
 		while (++x < WIDTH)
 			handle_pixel(x, y, f);
 	}
-	mlx_put_image_to_window(f->mlx_connection, f->mlx_window, f->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(f->mlx_connection,
+		f->mlx_window, f->img.img_ptr, 0, 0);
 }

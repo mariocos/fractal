@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 12:23:18 by mariocos          #+#    #+#             */
+/*   Updated: 2024/10/11 12:55:23 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	ft_help(void)
@@ -11,12 +23,10 @@ void	ft_help(void)
 	exit (1);
 }
 
-
-
 int	main(int argc, char **argv)
 {
 	t_fractol	fract;
-	int	iter;
+	int			iter;
 
 	if (argc == 2 && !ft_strncmp(argv[1], "help", 4))
 		ft_help();

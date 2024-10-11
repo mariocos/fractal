@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 12:23:28 by mariocos          #+#    #+#             */
+/*   Updated: 2024/10/11 13:04:33 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	ft_atoi(char *str)
@@ -50,26 +62,14 @@ void	fart_check(char *s)
 	{
 		write(1, "please call julia with a valid number set\n", 43);
 		exit(1);
-	}	
+	}
 }
 
-double	ft_fartoi(char *str)
+double	fart_loop(char *str, double nmb, int i)
 {
-	double	nmb;
-	int	i;
 	double	flag;
-	int	neg;
 
-	fart_check(str);
-	i = 0;
 	flag = 10;
-	nmb = 0;
-	neg = 1;
-	if (str[i] == '-')
-	{
-		neg = -1;
-		i++;
-	}
 	while (str[i] != '\0')
 	{
 		if (str[i] == '.')
@@ -86,16 +86,34 @@ double	ft_fartoi(char *str)
 		}
 		i++;
 	}
-	return (nmb * neg);
+	return (nmb);
 }
 
+double	ft_fartoi(char *str)
+{
+	double	nmb;
+	int		neg;
+	int		i;
 
+	fart_check(str);
+	i = 0;
+	nmb = 0;
+	neg = 1;
+	if (str[0] == '-')
+	{
+		neg = -1;
+		i++;
+	}
+	nmb = fart_loop(str, nmb, i);
+	return (nmb * neg);
+}
 
 void	parser(int argc, char **argv)
 {
 	if (argc < 2 || argc > 5)
 		ft_call_error();
-	if (ft_strncmp(argv[1], "mandelbrot", 10) && ft_strncmp(argv[1], "julia", 5))
+	if (ft_strncmp(argv[1], "mandelbrot", 10)
+		&& ft_strncmp(argv[1], "julia", 5))
 		ft_call_error();
 	if (!ft_strncmp(argv[1], "julia", 5) && argc < 4)
 		ft_call_error();

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 12:23:09 by mariocos          #+#    #+#             */
+/*   Updated: 2024/10/11 12:26:13 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	close_handler(t_fractol *f)
@@ -22,7 +34,7 @@ int	mouse_handler(int keysym, int x, int y, t_fractol *f)
 	return (-1);
 }
 
-int	key_handler(int	keysym, t_fractol *f)
+int	key_handler(int keysym, t_fractol *f)
 {
 	if (keysym == XK_Escape)
 		close_handler(f);

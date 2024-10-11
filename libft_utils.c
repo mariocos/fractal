@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mariocos <mariocos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/11 12:23:14 by mariocos          #+#    #+#             */
+/*   Updated: 2024/10/11 12:55:02 by mariocos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	ft_strncmp(const char *s1, const char *s2, int n)
@@ -19,7 +31,6 @@ int	ft_strncmp(const char *s1, const char *s2, int n)
 	ret = *str1 - *str2;
 	return (ret);
 }
-
 
 void	ft_putstr_fd(char *s, int fd)
 {
